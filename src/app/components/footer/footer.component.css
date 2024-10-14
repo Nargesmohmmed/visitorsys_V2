@@ -1,0 +1,9 @@
+:host {
+  margin-top: auto;
+}
+
+
+#footer {
+  position:fixed;
+  bottom:0;
+}

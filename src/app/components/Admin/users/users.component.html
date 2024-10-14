@@ -1,0 +1,265 @@
+<p class="h3 text-center">إعدادات المستخدمين</p>
+
+<form [formGroup]="UsersFormAdd" (submit)="handleFormAdd()">
+
+
+  <div class="row d-flex justify-content-center align-items-center mt-5 gx-5">
+
+
+   <div class="col-4">
+
+    <div class="mb-3">
+      <label for="UsersName" class="form-label">إسم المستخدم</label>
+      <input formControlName="UserName" type="text" class="form-control mb-3" id="UsersName" placeholder="إسم المستخدم">
+
+
+    </div>
+
+    <div class="mb-3">
+      <label for="UserPassword" class="form-label">كلمة المرور</label>
+      <input formControlName="UsersPassword" type="password" class="form-control mb-3" id="UserPassword" placeholder="كلمة المرور">
+
+
+    </div>
+
+    <div class="mb-3">
+      <label for="UsersRPass" class="form-label">تأكيد كلمة المرور</label>
+      <input formControlName="UsersrePassword" type="password" class="form-control mb-3" id="UsersRPass" placeholder="تأكيد كلمة المرور">
+
+
+    </div>
+
+
+   </div>
+
+   <div class="col-4">
+
+    <div class="mb-3">
+
+      <label for="UserEmail">البريد الالكتروني</label>
+      <input formControlName = "UsersEmail" type="email" class="form-control" id="UserEmail" placeholder="البريد الالكتروني">
+
+
+    </div>
+
+    <div class="mb-3">
+      <label for="UserPhone">رقم الهاتف</label>
+      <input formControlName = "UsersPhone" type="tel" class="form-control" id="UserPhone" placeholder="رقم الهاتف">
+
+
+    </div>
+
+    <div class="mb-3">
+      <label for="UsersJop">الصفة الوظيفية</label>
+      <input formControlName = "UserJop" type="tel" class="form-control" id="UsersJop" placeholder="الصفة الوظيفية">
+
+
+    </div>
+
+
+   </div>
+
+
+   <!-- // ************************************************* -->
+
+   <div class="w-100">
+
+    <button [disabled]="UsersFormAdd.invalid" class="btn btn-success">حفظ</button>
+
+   </div>
+
+  </div>
+
+  <hr>
+
+</form>
+
+   <!-- table // ***************************************** -->
+
+
+   <div class="mt-5 ">
+
+    <div class="mb-3">
+      <label for="SerchInput" class="form-label">بحث</label>
+
+      <div class="row">
+
+        <div class="col-4">
+
+          <input [(ngModel)]="term" type="text" class="form-control" id="SerchInput" placeholder="إسم المستخدم">
+
+        </div>
+
+        <div class="col-3">
+
+          <button class="btn btn-Agency">
+            بحث <i class="fa-solid fa-magnifying-glass"></i></button>
+
+
+        </div>
+
+      </div>
+
+
+    </div>
+
+    <table class="table table-hover">
+
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+                   <th scope="col">إسم المستخدم</th>
+                   <th scope="col">الصفة الوظيفية</th>
+                   <th scope="col">البريد الالكتروني</th>
+                   <th scope="col">رقم الهاتف</th>
+          <th scope="col">تعديل</th>
+          <th scope="col">عرض</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <tr>
+          <th>1</th>
+          <td>نرجس محمد</td>
+          <td>مبرمجة</td>
+          <td>narges22gmail.com</td>
+          <td>0945345565</td>
+
+          <td>
+
+            <button  class="btn btn-primary Modele" data-bs-toggle="modal"
+            [attr.data-bs-target]="'#UpdateModal-' ">تعديل <i class="fa-solid fa-pen-to-square"></i></button>
+          </td>
+          <td>
+            <button class="btn btn-warning Modele" data-bs-toggle="modal"
+            [attr.data-bs-target]="'#ViewModal-' ">عرض <i class="fa-solid fa-eye"></i></button>
+          </td>
+
+        </tr>
+
+
+            <!-- // ************************************* modal -->
+
+
+
+<div class="modal fade" [id]="'UpdateModal-' "  tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel"></h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="UsersFormUpdata" (submit)="handleFormUpdate()">
+
+
+          <div class="mb-3">
+            <label for="UsersNameUpdate" class="form-label">إسم المستخدم</label>
+            <input  formControlName="UserName" type="text" class="form-control mb-3" id="UsersNameUpdate">
+
+          </div>
+
+          <div class="mb-3">
+            <label for="UsersPassUpdate" class="form-label">كلمة المرور</label>
+            <input formControlName="UsersPassword" type="password" class="form-control mb-3" id="UsersPassUpdate" placeholder="كلمة المرور">
+
+
+          </div>
+
+          <div class="mb-3">
+            <label for="UsersRPassUpdate" class="form-label">تأكيد كلمة المرور</label>
+            <input formControlName="UsersrePassword" type="password" class="form-control mb-3" id="UsersRPassUpdate" placeholder="تأكيد كلمة المرور">
+
+
+          </div>
+
+
+
+            <div class="mb-3">
+
+              <label for="UserEmailUpdate">البريد الالكتروني</label>
+              <input formControlName = "UsersEmail" type="email" class="form-control" id="UserEmailUpdate">
+
+
+            </div>
+
+            <div class="mb-3">
+              <label for="UserPhoneUpdate">رقم الهاتف</label>
+              <input  formControlName = "UsersPhone" type="tel" class="form-control" id="UserPhoneUpdate">
+
+
+
+            </div>
+
+            <div class="mb-3">
+              <label for="UsersJopUpdate" class="form-label">الصفة الوظيفية</label>
+              <input  formControlName="UserJop" type="text" class="form-control" id="UsersJopUpdate">
+
+
+            </div>
+
+
+
+
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">اغلاق</button>
+              <button  [disabled]="UsersFormUpdata.invalid" class="btn btn-primary" data-bs-dismiss="modal">تعديل</button>
+            </div>
+
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- // ******************************************Ditals -->
+
+<div class="modal fade" [id]="'ViewModal-' "  tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel"></h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+
+
+          <div class="mb-3">
+            <label for="nameHostModel" class="form-label">إسم المستخدم</label>
+            <input   type="text" class="form-control mb-3" id="nameHostModel"  readonly>
+
+          </div>
+
+
+
+            <div class="mb-3">
+
+              <label for="emailModel">البريد الالكتروني</label>
+              <input  type="email" class="form-control" id="emailModel" readonly>
+
+
+            </div>
+
+            <div class="mb-3">
+              <label for="userPhoneModel">رقم الهاتف</label>
+              <input   type="tel" class="form-control" id="userPhoneModel"  readonly>
+            </div>
+
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">اغلاق</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+      </tbody>
+
+    </table>
+
+  </div>

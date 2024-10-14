@@ -1,0 +1,47 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary nav-shadow">
+    <div class="container-fluid">
+      <a class="navbar-brand">
+        <img class="logo" src="./assets/image/شعار الهيئة.png" alt="Logo">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mx-auto mb-2 mb-lg-0 navbar-UL">
+
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/home" routerLinkActive="active">الرئيسية</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/Bookappointments" routerLinkActive="active">حجز مواعيد</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/print" routerLinkActive="active">التقارير</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/visitorsys" routerLinkActive="active">الزوار</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/reception" routerLinkActive="active">الإستقبال</a>
+          </li>
+
+
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/seting" routerLinkActive="active">الأعدادات</a>
+          </li>
+
+
+        </ul>
+
+        <ul>
+          <i class="fa-solid fa-user-tie fa-2xl" style="color: #c0a063;"></i>
+          <span role="button" (click)="signOut()" class="p-2">تسجيل خروج</span>
+        </ul>
+
+      </div>
+    </div>
+  </nav>

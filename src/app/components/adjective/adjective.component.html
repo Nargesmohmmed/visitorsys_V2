@@ -1,0 +1,207 @@
+<p class="h3 text-center">إعدادات الوصف الوظيفي</p>
+
+<form [formGroup]="AdjectiveFormAdd" (submit)="handleFormAdd()">
+
+
+  <div class="row">
+
+   <div class="col-6">
+
+    <div class="mb-3">
+      <label for="UserId" class="form-label">رقم المستخدم</label>
+      <input formControlName="UserId" type="text" class="form-control" id="UserId" placeholder="الصفة الوظيفية">
+
+      <!-- <div *ngIf="AdjectiveFormAdd.get('UserId')?.errors && AdjectiveFormAdd.get('UserId')?.touched" class="alert alert-danger p-1 small w-50 mx-auto">
+
+        <p class="mb-0" *ngIf="AdjectiveFormAdd.get('UserId')?.getError('required')">الرجاء ملء جميع البيانات</p>
+
+
+      </div> -->
+
+    </div>
+
+    <div class="mb-3">
+      <label for="nameAdjective" class="form-label">الصفة الوظيفية</label>
+      <input formControlName="Adjective" type="text" class="form-control" id="nameAdjective" placeholder="الصفة الوظيفية">
+
+      <!-- <div *ngIf="AdjectiveFormAdd.get('Adjective')?.errors && AdjectiveFormAdd.get('Adjective')?.touched" class="alert alert-danger p-1 small w-50 mx-auto">
+
+        <p class="mb-0" *ngIf="AdjectiveFormAdd.get('Adjective')?.getError('required')">الرجاء ملء جميع البيانات</p>
+
+
+      </div> -->
+
+    </div>
+
+
+
+   </div>
+
+   <div class="w-100">
+
+    <button [disabled]="AdjectiveFormAdd.invalid" class="btn btn-success">حفظ</button>
+
+   </div>
+
+  </div>
+
+  <hr>
+
+</form>
+
+   <!-- table // ***************************************** -->
+
+   <div class="mt-5 ">
+
+    <div class="mb-3">
+      <label for="nameAdjectiveSarch" class="form-label">بحث</label>
+
+      <div class="row">
+
+        <div class="col-4">
+
+          <input [(ngModel)]="term"  type="text" class="form-control" id="nameAdjectiveSarch" placeholder="الصفة الوظيفية">
+
+        </div>
+
+        <div class="col-3">
+
+          <button class="btn btn-Agency">
+            بحث <i class="fa-solid fa-magnifying-glass"></i></button>
+
+        </div>
+
+      </div>
+
+
+    </div>
+
+    <table class="table table-hover" *ngIf="Adjective.length > 0">
+
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">الصفة الوظيفية</th>
+          <th scope="col">تعديل</th>
+          <th scope="col">عرض</th>
+        </tr>
+      </thead>
+      <tbody *ngFor="let item of Adjective | searchAjective:term ; let i=index">
+        <tr>
+          <th>{{i + 1}}</th>
+          <td>{{item.Adjective}}</td>
+          <td>
+
+            <button (click)="cli(item.Id)" class="btn btn-primary Modele" data-bs-toggle="modal"
+            [attr.data-bs-target]="'#UpdateModal-' + item.Id">تعديل <i class="fa-solid fa-pen-to-square"></i></button>
+          </td>
+          <td>
+            <button class="btn btn-warning Modele" data-bs-toggle="modal"
+            [attr.data-bs-target]="'#ViewModal-' + item.Id">عرض <i class="fa-solid fa-eye"></i></button>
+          </td>
+        </tr>
+
+
+
+
+
+          <!-- // ************************************* modal -->
+
+
+
+  <div class="modal fade" [id]="'UpdateModal-' + item.Id"  tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel"></h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="AdjectiveFormUpdata" (submit)="handleFormUpdate()">
+
+            <div class="mb-3">
+              <label for="UserId" class="form-label">رقم المستخدم</label>
+              <input value="12"  formControlName="UserId" type="text" class="form-control" id="UserId" placeholder="12">
+
+<!--
+              <div *ngIf="AdjectiveFormUpdata.get('UserId')?.errors && AdjectiveFormUpdata.get('UserId')?.touched" class="alert alert-danger p-1 small w-50 mx-auto">
+
+                <p class="mb-0" *ngIf="AdjectiveFormUpdata.get('UserId')?.getError('required')">الرجاء ملء جميع البيانات</p>
+
+
+              </div> -->
+
+            </div>
+
+            <div class="mb-3">
+              <label for="nameAdjectiveModel" class="form-label">الصفة الوظيفية</label>
+              <input formControlName="Adjective" type="text" class="form-control" id="nameAdjectiveModel" [placeholder]="item.Adjective">
+
+<!-- 
+              <div *ngIf="AdjectiveFormUpdata.get('Adjective')?.errors && AdjectiveFormUpdata.get('Adjective')?.touched" class="alert alert-danger p-1 small w-50 mx-auto">
+
+                <p class="mb-0" *ngIf="AdjectiveFormUpdata.get('Adjective')?.getError('required')">الرجاء ملء جميع البيانات</p>
+
+
+              </div> -->
+
+            </div>
+
+            <div class="mb-3">
+
+              <input hidden [value]="AdjectiveID"  formControlName="id" type="text" class="form-control" id="id">
+            </div>
+
+
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">اغلاق</button>
+              <button [disabled]="AdjectiveFormUpdata.invalid" class="btn btn-primary" (click)="this.patchName()" data-bs-dismiss="modal">تعديل</button>
+            </div>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+ <!-- // ******************************************Ditals -->
+
+<div class="modal fade" [id]="'ViewModal-' + item.Id"  tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel"></h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="mb-3">
+            <label for="nameAdjectiveModel" class="form-label">الصفة الوظيفية</label>
+            <input [value]="item.Adjective" type="text" class="form-control" id="nameAdjectiveModel" placeholder="الصفة الوظيفية" readonly>
+          </div>
+
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">اغلاق</button>
+        <!-- <button type="button" class="btn btn-primary">عرض</button> -->
+      </div>
+    </div>
+  </div>
+
+</div>
+
+      </tbody>
+
+    </table>
+
+  </div>
+
+
+
+
+
+
+
+

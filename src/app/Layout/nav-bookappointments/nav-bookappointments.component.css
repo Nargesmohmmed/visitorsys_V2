@@ -1,0 +1,14 @@
+.bottomleft {
+  position: fixed;
+  left: 30px;
+  bottom: 30px;
+  /* width: 50px;
+  height: 50px; */
+  cursor: pointer;
+  z-index: 1000000000000000000;
+  /* display: flex;
+  justify-content: center;
+  align-items: center; */
+  animation: _ngcontent-ng-c109674868_fadeIn 0.8s;
+  transition: all 0.5s;
+}

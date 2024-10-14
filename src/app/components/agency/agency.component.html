@@ -1,0 +1,211 @@
+<p class="h3 text-center">إعدادات الجهة</p>
+
+<form [formGroup]="AgencyFormAdd" (submit)="handleFormAdd()">
+
+
+  <div class="row">
+
+
+   <div class="col-6">
+
+    <div class="mb-3">
+      <label for="UserId" class="form-label">رقم المستخدم</label>
+      <input  formControlName="UserId" type="text" class="form-control" id="UserId" >
+<!--
+      <div *ngIf="AgencyFormAdd.get('UserId')?.errors && AgencyFormAdd.get('UserId')?.touched" class="alert alert-danger p-1 small w-50 mx-auto">
+
+        <p class="mb-0" *ngIf="AgencyFormAdd.get('UserId')?.getError('required')">الرجاء ملء جميع البيانات</p>
+
+
+      </div> -->
+
+    </div>
+
+    <div class="mb-3">
+      <label for="AgencyName" class="form-label">إسم الجهة</label>
+      <input  formControlName="AgencyName" type="text" class="form-control" id="AgencyName" placeholder="إسم الجهة">
+
+      <!-- <div *ngIf="AgencyFormAdd.get('AgencyName')?.errors && AgencyFormAdd.get('AgencyName')?.touched" class="alert alert-danger p-1 small w-50 mx-auto">
+
+        <p class="mb-0" *ngIf="AgencyFormAdd.get('AgencyName')?.getError('required')">الرجاء ملء جميع البيانات</p>
+
+      </div> -->
+
+    </div>
+
+
+   </div>
+
+   <div class="w-100">
+
+    <!-- // (click)="openSpiner()" -->
+    <button [disabled]="AgencyFormAdd.invalid" class="btn btn-success">حفظ</button>
+
+   </div>
+
+  </div>
+
+  <hr>
+
+</form>
+
+   <!-- table // ***************************************** -->
+
+   <div class="mt-5 ">
+
+    <div class="mb-3">
+      <label for="nameAgencySerch" class="form-label" >بحث</label>
+
+      <div class="row">
+
+        <div class="col-4">
+
+          <input [(ngModel)]="term" type="text" class="form-control" id="nameAgencySerch" placeholder="إسم الجهة">
+
+        </div>
+
+        <div class="col-3">
+
+          <button class="btn btn-Agency">
+            بحث <i class="fa-solid fa-magnifying-glass"></i></button>
+
+
+        </div>
+
+      </div>
+
+
+    </div>
+
+    <table class="table table-hover" *ngIf="Agency.length > 0" >
+
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">اسم الجهة</th>
+          <th scope="col">تعديل</th>
+          <th scope="col">عرض</th>
+        </tr>
+      </thead>
+      <tbody *ngFor="let item of Agency | search:term  ; let i=index">
+        <tr>
+          <th>{{i + 1}}</th>
+          <td>{{item.AgencyName}}</td>
+          <td>
+
+            <!-- <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#UpdateModal" data-bs-whatever="@mdo"   [attr.data-bs-target]="'#UpdateModal-' + item.ID">تعديل <i class="fa-solid fa-pen-to-square"></i></button> -->
+            <button (click)="cli(item.Id)"  class="btn btn-primary Modele" data-bs-toggle="modal"
+            [attr.data-bs-target]="'#UpdateModal-' + item.Id">تعديل <i class="fa-solid fa-pen-to-square"></i></button>
+
+          </td>
+          <td>
+            <button class="btn btn-warning Modele" data-bs-toggle="modal"
+            [attr.data-bs-target]="'#ViewModal-' + item.Id">عرض <i class="fa-solid fa-eye"></i></button>
+          </td>
+        </tr>
+
+<!-- //****************  model UpDate -->
+
+        <div class="modal fade"  [id]="'UpdateModal-' + item.Id"  tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel"></h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+
+                <form [formGroup]="AgencyFormUpdata" (submit)="handleFormUpdate()">
+
+                  <div class="mb-3">
+                    <label for="nameAgencyModel" class="col-form-label">اسم الجهة</label>
+                    <input [value]="item.AgencyName"  formControlName="agencyName" type="text" class="form-control" AgencyName id="nameAgencyModel" [placeholder]="item.AgencyName">
+
+
+                  <!-- <div *ngIf="AgencyFormUpdata.get('agencyName')?.errors && AgencyFormUpdata.get('agencyName')?.touched" class="alert alert-danger p-1 small w-50 mx-auto">
+
+                    <p class="mb-0" *ngIf="AgencyFormUpdata.get('agencyName')?.getError('required')">الرجاء ملء جميع البيانات</p>
+
+                  </div> -->
+
+                  </div>
+
+                  <div class="mb-3">
+                    <label for="nameAgencyModel" class="col-form-label">اسم المستخدم</label>
+                    <input value="12"  formControlName="userId" type="text" class="form-control" id="nameAgencyModel" placeholder="10">
+
+                    <!-- <div *ngIf="AgencyFormUpdata.get('userId')?.errors && AgencyFormUpdata.get('userId')?.touched" class="alert alert-danger p-1 small w-50 mx-auto">
+
+                      <p class="mb-0" *ngIf="AgencyFormUpdata.get('userId')?.getError('required')">الرجاء ملء جميع البيانات</p>
+
+
+                    </div> -->
+
+                  </div>
+
+                  <div class="mb-3">
+                    <!-- <label for="id" class="col-form-label">رقم الجهة</label> -->
+                    <input hidden [value]="AgencyID"  formControlName="id" type="text" class="form-control" id="id" [placeholder]="AgencyID">
+                  </div>
+
+                  <div class="modal-footer">
+
+                    <button (click)="cler()" type="button"  class="btn btn-secondary" data-bs-dismiss="modal">اغلاق</button>
+                    <button  [disabled]="AgencyFormUpdata.invalid"  class="btn btn-primary" (click)="this.patchName()" data-bs-dismiss="modal">تعديل</button>
+                  </div>
+                </form>
+              </div>
+
+
+            </div>
+          </div>
+        </div>
+
+
+<!-- //****************  model didils -->
+
+
+        <!-- // ******************************************Ditals -->
+
+<div class="modal fade" [id]="'ViewModal-' + item.Id"  tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel"></h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">اسم الجهة</label>
+            <input type="text" [value]="item.AgencyName" class="form-control" id="recipient-name"  readonly>
+          </div>
+
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">اغلاق</button>
+
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+
+      </tbody>
+
+    </table>
+
+  </div>
+
+
+
+
+
+
+
+
+
+

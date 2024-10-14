@@ -1,0 +1,96 @@
+<section class="container">
+
+
+  <div>
+
+    <!-- table // ***************************************** -->
+
+    <div class="mt-5 ">
+
+     <div class="mb-3">
+       <label for="SerchInput" class="form-label">بحث</label>
+
+       <div class="row">
+
+         <div class="col-4">
+
+           <input [(ngModel)]="term" type="text" class="form-control" id="SerchInput" placeholder="إسم الزائر">
+
+         </div>
+
+         <div class="col-3">
+
+           <button class="btn btn-Agency">
+             بحث <i class="fa-solid fa-magnifying-glass"></i></button>
+
+
+         </div>
+
+       </div>
+
+
+     </div>
+
+
+     <div id="section">
+
+      <h3 class="title d-flex justify-content-center align-items-center">مواعيد الزوار</h3>
+
+      <div id="imges" class="w-50 d-flex justify-content-center align-items-center translate-middle-x  mb-4">
+
+
+      <img id="imagelogo" class="w-25" src="./assets/image/logo_In.png" alt="">
+
+      </div>
+
+      <div id="table">
+
+
+     <table class="table table-hover ">
+
+      <thead>
+        <tr>
+          <th scope="col">ت</th>
+          <th scope="col">إسم الزائر</th>
+          <th scope="col">الجهة</th>
+          <th scope="col">الصفة الوظيفية</th>
+          <th scope="col">رقم الهوية</th>
+          <th scope="col">التاريخ</th>
+          <th scope="col">الوقت</th>
+
+        </tr>
+      </thead>
+
+
+      <tbody *ngFor="let item of Guest | searchGuest:term ; let i=index">
+
+        <tr>
+          <th>{{i + 1}}</th>
+          <td>{{item.GuestName}}</td>
+          <td>{{item.AgencyName}}</td>
+          <td>{{item.Adjective}}</td>
+          <td>{{item.PidNumber}}</td>
+          <td>{{item.DateIn}}</td>
+          <td>{{item.TimeIn}}</td>
+
+        </tr>
+
+
+      </tbody>
+
+    </table>
+
+      </div>
+
+     </div>
+
+   </div>
+
+</div>
+
+<!-- // [printStyle]="{img : {'width': '100px' ,}}" -->
+
+<button  styleSheetFile="assets/css/style.css"  class="btn btn-danger" printSectionId="section" ngxPrint>طباعة</button>
+
+
+</section>

@@ -1,0 +1,328 @@
+<p class="h3 text-center">اضافة المستضيف</p>
+
+<form [formGroup]="HostFormAdd" (submit)="handleFormAdd()">
+
+
+  <div class="row d-flex justify-content-center align-items-center mt-5 gx-5">
+
+
+   <div class="col-4">
+
+    <div class="mb-3">
+      <label for="HostName" class="form-label">إسم المستضيف</label>
+      <input formControlName="HostName" type="text" class="form-control mb-3" id="HostName" placeholder="إسم المستضيف">
+
+      <!-- <div *ngIf="HostFormAdd.get('HostName')?.errors && HostFormAdd.get('HostName')?.touched" class="alert alert-danger p-1 small w-50 mx-auto">
+
+        <p class="mb-0" *ngIf="HostFormAdd.get('HostName')?.getError('required')">الرجاء ملء جميع البيانات</p>
+
+      </div> -->
+
+    </div>
+
+    <label for="nameAdjective">الصفة الوظيفية</label>
+    <select formControlName="AdjectiveId"   id="nameAdjective" class="form-select" aria-label="Default select example">
+        <option  *ngFor="let item of Adjective" [value]="item.Id">{{item.Adjective}}</option>
+        <!-- <option value="2">مهندس/ة</option>
+        <option value="3">عامل تكييف</option> -->
+      </select>
+
+      <!-- <div *ngIf="HostFormAdd.get('AdjectiveId')?.errors && HostFormAdd.get('AdjectiveId')?.touched" class="alert alert-danger p-1 small w-50 mx-auto">
+
+        <p class="mb-0" *ngIf="HostFormAdd.get('AdjectiveId')?.getError('required')">الرجاء ملء جميع البيانات</p>
+
+      </div> -->
+
+   </div>
+
+   <div class="col-4">
+
+    <div class="mb-3">
+
+      <label for="HostEmail">البريد الالكتروني</label>
+      <input formControlName = "HostEmail" type="email" class="form-control" id="HostEmail">
+
+
+      <!-- <div *ngIf="HostFormAdd.get('HostEmail')?.errors && HostFormAdd.get('HostEmail')?.touched" class="alert alert-danger p-1 small w-50 mx-auto">
+
+        <p class="mb-0" *ngIf="HostFormAdd.get('HostEmail')?.getError('required')">الرجاء ملء جميع البيانات</p>
+
+      </div> -->
+
+    </div>
+
+    <div class="mb-3">
+      <label for="HostPhone">رقم الهاتف</label>
+      <input formControlName = "HostTelephone" type="tel" class="form-control" id="HostPhone">
+
+      <!-- <div *ngIf="HostFormAdd.get('HostTelephone')?.errors && HostFormAdd.get('HostTelephone')?.touched" class="alert alert-danger p-1 small w-50 mx-auto">
+
+        <p class="mb-0" *ngIf="HostFormAdd.get('HostTelephone')?.getError('required')">الرجاء ملء جميع البيانات</p>
+
+      </div> -->
+
+    </div>
+
+
+    <div class="mb-3">
+      <label for="UserId" class="form-label">رقم المستخدم</label>
+      <input  formControlName="UserID" type="text" class="form-control" id="UserId" >
+
+      <!-- <div *ngIf="HostFormAdd.get('UserID')?.errors && HostFormAdd.get('UserID')?.touched" class="alert alert-danger p-1 small w-50 mx-auto">
+
+        <p class="mb-0" *ngIf="HostFormAdd.get('UserID')?.getError('required')">الرجاء ملء جميع البيانات</p>
+
+
+      </div> -->
+
+    </div>
+
+
+   </div>
+
+
+   <!-- // ************************************************* -->
+
+   <div class="w-100">
+
+    <button [disabled]="HostFormAdd.invalid" class="btn btn-success">حفظ</button>
+
+   </div>
+
+  </div>
+
+  <hr>
+
+</form>
+
+   <!-- table // ***************************************** -->
+
+   <div class="mt-5 ">
+
+    <div class="mb-3">
+      <label for="SerchInput" class="form-label">بحث</label>
+
+      <div class="row">
+
+        <div class="col-4">
+
+          <input [(ngModel)]="term" type="text" class="form-control" id="SerchInput" placeholder="إسم المستضيف">
+
+        </div>
+
+        <div class="col-3">
+
+          <button class="btn btn-Agency">
+            بحث <i class="fa-solid fa-magnifying-glass"></i></button>
+
+
+        </div>
+
+      </div>
+
+
+    </div>
+
+    <table class="table table-hover" *ngIf="Host.length > 0 ">
+
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+                   <th scope="col">إسم المستضيف</th>
+                   <!-- <th scope="col">الصفة الوظيفية</th>
+                   <th scope="col">البريد الالكتروني</th>
+                   <th scope="col">رقم الهاتف</th>
+                   <th scope="col">اسم المستخدم</th> -->
+          <th scope="col">تعديل</th>
+          <th scope="col">عرض</th>
+        </tr>
+      </thead>
+      <tbody *ngFor="let item of Host | searchHost:term ; let i=index">
+
+        <tr>
+          <th>{{i + 1}}</th>
+          <td>{{item.HostName}}</td>
+
+          <td>
+
+            <button (click)="cli(item.ID)" class="btn btn-primary Modele" data-bs-toggle="modal"
+            [attr.data-bs-target]="'#UpdateModal-' + item.ID">تعديل <i class="fa-solid fa-pen-to-square"></i></button>
+          </td>
+          <td>
+            <button class="btn btn-warning Modele" data-bs-toggle="modal"
+            [attr.data-bs-target]="'#ViewModal-' + item.ID">عرض <i class="fa-solid fa-eye"></i></button>
+          </td>
+
+        </tr>
+
+
+            <!-- // ************************************* modal -->
+
+
+
+<div class="modal fade" [id]="'UpdateModal-' + item.ID"  tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel"></h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="HostFormUpdata" (submit)="handleFormUpdate()">
+
+
+          <div class="mb-3">
+            <label for="nameHostModel" class="form-label">إسم المستضيف</label>
+            <input [value]="item.HostName" formControlName="HostName" type="text" class="form-control mb-3" id="nameHostModel" [placeholder]="item.HostName">
+
+            <!-- <div *ngIf="HostFormUpdata.get('HostName')?.errors && HostFormUpdata.get('HostName')?.touched" class="alert alert-danger p-1 small w-50 mx-auto">
+
+              <p class="mb-0" *ngIf="HostFormUpdata.get('HostName')?.getError('required')">الرجاء ملء جميع البيانات</p>
+
+            </div> -->
+
+          </div>
+
+          <label for="nameAdjective">الصفة الوظيفية</label>
+          <select  formControlName="AdjectiveId" [id]="item.AdjectiveId"   id="nameAdjective" class="form-select" aria-label="Default select example">
+              <option  *ngFor="let item of Adjective" [value]="item.Id">{{item.Adjective}}</option>
+
+            </select>
+
+            <!-- <div *ngIf="HostFormUpdata.get('AdjectiveId')?.errors && HostFormUpdata.get('AdjectiveId')?.touched" class="alert alert-danger p-1 small w-50 mx-auto">
+
+              <p class="mb-0" *ngIf="HostFormUpdata.get('AdjectiveId')?.getError('required')">الرجاء ملء جميع البيانات</p>
+
+            </div> -->
+
+
+            <div class="mb-3">
+
+              <label for="emailModel">البريد الالكتروني</label>
+              <input formControlName = "HostEmail" type="email" class="form-control" id="emailModel" [placeholder]="item.HostEmail">
+
+              <!-- <div *ngIf="HostFormUpdata.get('HostEmail')?.errors && HostFormUpdata.get('HostEmail')?.touched" class="alert alert-danger p-1 small w-50 mx-auto">
+
+                <p class="mb-0" *ngIf="HostFormUpdata.get('HostEmail')?.getError('required')">الرجاء ملء جميع البيانات</p>
+
+              </div> -->
+
+            </div>
+
+            <div class="mb-3">
+              <label for="userPhoneModel">رقم الهاتف</label>
+              <input [value]="item.HostTelephone" formControlName = "HostTelephone" type="tel" class="form-control" id="userPhoneModel" [placeholder]="item.HostTelephone">
+
+
+              <!-- <div *ngIf="HostFormUpdata.get('HostTelephone')?.errors && HostFormUpdata.get('HostTelephone')?.touched" class="alert alert-danger p-1 small w-50 mx-auto">
+
+                <p class="mb-0" *ngIf="HostFormUpdata.get('HostTelephone')?.getError('required')">الرجاء ملء جميع البيانات</p>
+
+              </div> -->
+
+            </div>
+
+            <div class="mb-3">
+              <label for="UserId" class="form-label">رقم المستخدم</label>
+              <input  formControlName="UserID" type="text" class="form-control" id="UserId" >
+
+              <!-- <div *ngIf="HostFormUpdata.get('UserID')?.errors && HostFormUpdata.get('UserID')?.touched" class="alert alert-danger p-1 small w-50 mx-auto">
+
+                <p class="mb-0" *ngIf="HostFormUpdata.get('UserID')?.getError('required')">الرجاء ملء جميع البيانات</p>
+
+
+              </div> -->
+
+            </div>
+
+            <div class="mb-3">
+              <label for="id" class="col-form-label">رقم المستضيف</label>
+              <input  [value]="HostId"  formControlName="Id" type="text" class="form-control" id="Id" [placeholder]="HostId">
+            </div>
+
+
+
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">اغلاق</button>
+              <button [disabled]="HostFormUpdata.invalid" (click)="this.patchName()"  class="btn btn-primary" data-bs-dismiss="modal">تعديل</button>
+            </div>
+
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- // ******************************************Ditals -->
+
+<div class="modal fade" [id]="'ViewModal-' + item.ID"  tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel"></h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+
+
+          <div class="mb-3">
+            <label for="nameHostModel" class="form-label">إسم المستضيف</label>
+            <input [value]="item.HostName"  type="text" class="form-control mb-3" id="nameHostModel" [placeholder]="item.HostName" readonly>
+
+          </div>
+
+          <!-- <label for="nameAdjective">الصفة الوظيفية</label>
+          <select   [id]="item.AdjectiveId" class="form-select" aria-label="Default select example">
+              <option >{{item.Adjective}}</option>
+            </select> -->
+
+            <div class="mb-3">
+
+              <label for="nameAdjective">الصفة الوظيفية</label>
+              <select  [id]="item.ID" class="form-select" aria-label="Default select example">
+                  <option >{{item.Adjective}}</option>
+
+                </select>
+
+            </div>
+
+            <div class="mb-3">
+
+              <label for="emailModel">البريد الالكتروني</label>
+              <input  type="email" class="form-control" id="emailModel" [placeholder]="item.HostEmail">
+
+
+            </div>
+
+            <div class="mb-3">
+              <label for="userPhoneModel">رقم الهاتف</label>
+              <input [value]="item.HostTelephone"  type="tel" class="form-control" id="userPhoneModel" [placeholder]="item.HostTelephone" readonly>
+            </div>
+
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">اغلاق</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+      </tbody>
+
+    </table>
+
+  </div>
+
+
+
+
+
+
+
+
+

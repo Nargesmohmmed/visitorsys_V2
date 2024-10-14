@@ -1,0 +1,104 @@
+
+/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&display=swap');
+
+:root {
+  --main-color : #1d6dc3;
+  --font-logo :#c0a063;
+  --navbar-color : #3d4667 !important;
+  --side-shadow : #F4F5FA !important;
+  --light-color : #f0f3f2;
+}
+
+body {
+  font-family: "Cairo", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 900;
+  font-style: normal;
+  font-variation-settings:
+    "slnt" 0;
+}
+
+.active {
+  color: var(--font-logo) !important;
+
+}
+
+
+.bg-nav {
+  background-color: var(--font-logo);
+}
+
+h1 {
+  font-weight: 900;
+}
+
+.font-color {
+  /* color: var(--font-logo); */
+  color: var(--navbar-color);
+
+}
+
+/* login cart */
+.bg-main-light {
+  background-color: var(--light-color);
+}
+
+.navbar-UL li a ,
+span{
+  color: var(--navbar-color);
+}
+
+.font-text {
+  color: var(--navbar-color) !important;
+}
+
+.nav-shadow {
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+}
+
+/* // ***************************** navbar Book  */
+.activeBook_btn {
+
+  background-color: var(--main-color) !important;
+  color: white !important;
+  border-radius: 8px;
+  cursor: pointer;
+  text-align: center;
+  overflow: hidden !important;
+
+}
+
+.activeBook_btn:hover {
+
+  color: white !important;
+
+}
+
+
+/* // ***************************** Agency  */
+
+.btn-Agency {
+
+  background-color: var(--navbar-color) !important;
+  color: white !important;
+  overflow: hidden !important;
+
+}
+
+table {
+
+  cursor: pointer;
+
+}
+
+
+
+
+
+
+
+
+
+
+

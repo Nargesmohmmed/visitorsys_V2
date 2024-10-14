@@ -1,0 +1,467 @@
+<p class="h3 text-center">حجز موعد</p>
+
+<form [formGroup]="GuestFormAdd" (submit)="handleFormAdd()">
+
+
+  <div class="row d-flex justify-content-center align-items-center mt-5 gx-5">
+
+
+   <div class="col-4">
+
+    <div class="">
+      <label for="nameGuest" class="form-label">إسم الزئر</label>
+      <input formControlName="guestName" type="text" class="form-control mb-3" id="nameGuest" placeholder="إسم الزئر">
+
+      <!-- <div *ngIf="GuestFormAdd.get('guestName')?.errors && GuestFormAdd.get('guestName')?.touched" class="alert alert-danger p-1 small w-50 mx-auto">
+
+        <p class="mb-0" *ngIf="GuestFormAdd.get('guestName')?.getError('required')">الرجاء ملء جميع البيانات</p>
+
+
+      </div> -->
+
+
+      <label for="nameAgency">الجهة التابع لها</label>
+      <select formControlName="agencyId" id="nameAgency" class="form-select mb-3" aria-label="Default select example">
+        <option selected disabled hidden>Choose here</option>
+        <option  *ngFor="let item of Agency" [value]="item.Id">{{item.AgencyName}}</option>
+        </select>
+
+        <!-- <div *ngIf="GuestFormAdd.get('agencyId')?.errors && GuestFormAdd.get('agencyId')?.touched" class="alert alert-danger p-1 small w-50 mx-auto">
+
+          <p class="mb-0" *ngIf="GuestFormAdd.get('agencyId')?.getError('required')">الرجاء ملء جميع البيانات</p>
+
+
+        </div> -->
+
+    </div>
+
+    <label for="nameAdjective">الصفة الوظيفية</label>
+    <select formControlName="adjectiveId"   id="nameAdjective" class="form-select" aria-label="Default select example">
+      <option selected disabled hidden>Choose here</option>
+      <option  *ngFor="let item of Adjective" [value]="item.Id">{{item.Adjective}}</option>
+
+      </select>
+
+      <!-- <div *ngIf="GuestFormAdd.get('adjectiveId')?.errors && GuestFormAdd.get('adjectiveId')?.touched" class="alert alert-danger p-1 small w-50 mx-auto">
+
+        <p class="mb-0" *ngIf="GuestFormAdd.get('adjectiveId')?.getError('required')">الرجاء ملء جميع البيانات</p>
+
+
+      </div> -->
+
+
+   </div>
+
+   <div class="col-4">
+
+    <div class="mb-3">
+
+      <label for="nameHost ">اسم المستضيف</label>
+      <select formControlName="hostId" id="nameHost" class="form-select mb-3" aria-label="Default select example">
+        <option  *ngFor="let item of Host" [value]="item.ID">{{item.HostName}}</option>
+        </select>
+
+        <!-- <div *ngIf="GuestFormUpDate.get('hostId')?.errors && GuestFormUpDate.get('hostId')?.touched" class="alert alert-danger p-1 small w-50 mx-auto">
+
+          <p class="mb-0" *ngIf="GuestFormUpDate.get('hostId')?.getError('required')">الرجاء ملء جميع البيانات</p>
+
+
+        </div> -->
+    </div>
+    <div class="">
+      <label for="Type" class="form-label">نوع الموعد</label>
+      <input formControlName="guestType" type="text" class="form-control mb-3" id="Type" placeholder="نوع الموعد">
+
+      <!-- <div *ngIf="GuestFormAdd.get('guestType')?.errors && GuestFormAdd.get('guestType')?.touched" class="alert alert-danger p-1 small w-50 mx-auto">
+
+        <p class="mb-0" *ngIf="GuestFormAdd.get('guestType')?.getError('required')">الرجاء ملء جميع البيانات</p>
+
+
+      </div> -->
+
+    </div>
+
+    <div class="mb-3">
+      <label for="PIdNumber" class="form-label">رقم الهوية</label>
+      <input formControlName="pidNumber" type="text" class="form-control" id="PIdNumber" placeholder="رقم الهوية">
+
+      <!-- <div *ngIf="GuestFormAdd.get('pidNumber')?.errors && GuestFormAdd.get('pidNumber')?.touched" class="alert alert-danger p-1 small w-50 mx-auto">
+
+        <p class="mb-0" *ngIf="GuestFormAdd.get('pidNumber')?.getError('required')">الرجاء ملء جميع البيانات</p>
+
+
+      </div> -->
+
+    </div>
+
+
+   </div>
+
+   <div class="d-flex justify-content-center align-items-center mb-3">
+
+
+    <div class="mx-3">
+      <label for="DateIn">التاريخ</label>
+     <input   formControlName = "dateIn" type="date" class="form-control" id="datePicker" [min]="minDate" (click)="dataInput()" onChange="{e => alert(e.target.value)}"/>
+
+     <!-- <div *ngIf="GuestFormAdd.get('dt')?.errors && GuestFormAdd.get('dt')?.touched" class="alert alert-danger p-1 small w-50 mx-auto">
+
+      <p class="mb-0" *ngIf="GuestFormAdd.get('dt')?.getError('required')">الرجاء ملء جميع البيانات</p>
+
+
+    </div> -->
+
+    </div>
+    <div>
+     <label for="TimeIn">الوقت</label>
+    <input formControlName="timeIn" type="time" class="form-control" id="TimeIn">
+
+    <!-- <div *ngIf="GuestFormAdd.get('tm')?.errors && GuestFormAdd.get('tm')?.touched" class="alert alert-danger p-1 small w-50 mx-auto">
+
+      <p class="mb-0" *ngIf="GuestFormAdd.get('tm')?.getError('required')">الرجاء ملء جميع البيانات</p>
+
+
+    </div> -->
+
+  </div>
+  </div>
+
+
+  <div class="mb-3">
+    <label for="UserId" class="form-label">رقم المستخدم</label>
+    <input  formControlName="userId" type="text" class="form-control" id="UserId" >
+
+    <!-- <div *ngIf="GuestFormAdd.get('userId')?.errors && GuestFormAdd.get('userId')?.touched" class="alert alert-danger p-1 small w-50 mx-auto">
+
+      <p class="mb-0" *ngIf="GuestFormAdd.get('userId')?.getError('required')">Id is Required</p>
+
+
+    </div> -->
+
+  </div>
+
+   <!-- // ************************************************* -->
+
+   <div class="w-100">
+
+    <button [disabled]="GuestFormAdd.invalid" class="btn btn-success">حفظ</button>
+
+   </div>
+
+  </div>
+
+  <hr>
+
+</form>
+
+   <!-- table // ***************************************** -->
+
+   <div class="mt-5 ">
+
+    <div class="mb-3">
+      <label for="SerchInput" class="form-label">بحث</label>
+
+      <div class="row">
+
+        <div class="col-4">
+
+          <input [(ngModel)]="term" type="text" class="form-control" id="SerchInput" placeholder="إسم الزئر">
+
+        </div>
+
+        <div class="col-3">
+
+          <button class="btn btn-Agency">
+            بحث <i class="fa-solid fa-magnifying-glass"></i></button>
+
+
+        </div>
+
+      </div>
+
+
+    </div>
+
+    <table class="table table-hover " *ngIf="Guest.length > 0">
+
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">إسم الزائر</th>
+          <th scope="col">تعديل</th>
+          <th scope="col">عرض</th>
+        </tr>
+      </thead>
+      <tbody *ngFor="let item of Guest  | searchGuest:term ;  let i=index">
+
+        <tr>
+          <th>{{i + 1}}</th>
+          <td>{{item.GuestName}}</td>
+
+          <td>
+
+            <button  class="btn btn-primary Modele" data-bs-toggle="modal"
+            [attr.data-bs-target]="'#UpdateModal-' + item.Id" (click)="cli(item.Id)" >تعديل <i class="fa-solid fa-pen-to-square"></i></button>
+
+          </td>
+          <td>
+
+            <button class="btn btn-warning Modele" data-bs-toggle="modal"
+            [attr.data-bs-target]="'#ViewModal-' + item.Id">عرض <i class="fa-solid fa-eye"></i></button>
+
+          </td>
+
+        </tr>
+
+
+
+
+    <!-- // ************************************* modal -->
+
+
+
+<div class="modal fade" [id]="'UpdateModal-' + item.Id"  tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel"></h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="GuestFormUpDate" (submit)="handleFormUpdate()">
+
+          <div class="mb-3">
+
+            <label for="nameGuest" class="form-label">إسم الزئر</label>
+            <input formControlName="guestName" type="text" class="form-control mb-3" id="nameGuest" [placeholder]="item.GuestName">
+
+          </div>
+
+          <div class="mb-3">
+
+            <label for="nameAgency">الجهة التابع لها</label>
+            <select  formControlName="agencyId" id="nameAgency" class="form-select mb-3" aria-label="Default select example">
+
+              <option [selected] disabled hidden>{{item.agencyId}}</option>
+
+              <option  *ngFor="let item of Agency" [value]="item.Id">{{item.AgencyName}}</option>
+
+              </select>
+
+
+          </div>
+
+
+          <div class="mb-3">
+
+            <label for="nameAdjective">الصفة الوظيفية</label>
+            <select formControlName="adjectiveId"   id="nameAdjective" class="form-select" aria-label="Default select example">
+                <option  *ngFor="let item of Adjective" [value]="item.Id">{{item.Adjective}}</option>
+
+              </select>
+<!--
+              <div *ngIf="GuestFormUpDate.get('adjectiveId')?.errors && GuestFormUpDate.get('adjectiveId')?.touched" class="alert alert-danger p-1 small w-50 mx-auto">
+
+                <p class="mb-0" *ngIf="GuestFormUpDate.get('adjectiveId')?.getError('required')">الرجاء ملء جميع البيانات</p>
+
+
+              </div> -->
+
+          </div>
+
+          <div class="mb-3">
+
+            <label for="nameHost ">اسم المستضيف</label>
+            <select formControlName="hostId" id="nameHost" class="form-select mb-3" aria-label="Default select example">
+              <option  *ngFor="let item of Host" [value]="item.ID">{{item.HostName}}</option>
+              </select>
+
+              <!-- <div *ngIf="GuestFormUpDate.get('hostId')?.errors && GuestFormUpDate.get('hostId')?.touched" class="alert alert-danger p-1 small w-50 mx-auto">
+
+                <p class="mb-0" *ngIf="GuestFormUpDate.get('hostId')?.getError('required')">الرجاء ملء جميع البيانات</p>
+
+
+              </div> -->
+          </div>
+
+          <div class="mb-3">
+            <label for="Type" class="form-label">نوع الموعد</label>
+            <input formControlName="guestType" type="text" class="form-control mb-3" id="Type" [placeholder]="item.GuestType">
+
+            <!-- <div *ngIf="GuestFormUpDate.get('guestType')?.errors && GuestFormUpDate.get('guestType')?.touched" class="alert alert-danger p-1 small w-50 mx-auto">
+
+              <p class="mb-0" *ngIf="GuestFormUpDate.get('guestType')?.getError('required')">الرجاء ملء جميع البيانات</p>
+
+
+            </div> -->
+
+          </div>
+
+          <div class="mb-3">
+            <label for="PIdNumber" class="form-label">رقم الهوية</label>
+            <input formControlName="pidNumber" type="text" class="form-control" id="PIdNumber" [placeholder]="item.PidNumber">
+
+            <!-- <div *ngIf="GuestFormUpDate.get('pidNumber')?.errors && GuestFormUpDate.get('pidNumber')?.touched" class="alert alert-danger p-1 small w-50 mx-auto">
+
+              <p class="mb-0" *ngIf="GuestFormUpDate.get('pidNumber')?.getError('required')">الرجاء ملء جميع البيانات</p>
+
+
+            </div> -->
+
+          </div>
+
+          <div class="d-flex justify-content-center align-items-center mb-3">
+            <div class="mx-3">
+             <label for="DateIn">التاريخ</label>
+            <input formControlName = "dateIn" type="date" class="form-control" id="DateIn" [min]="minDate"  [placeholder]="item.DateIn">
+
+            <!-- <div *ngIf="GuestFormUpDate.get('dt')?.errors && GuestFormUpDate.get('dt')?.touched" class="alert alert-danger p-1 small w-50 mx-auto">
+
+              <p class="mb-0" *ngIf="GuestFormUpDate.get('dt')?.getError('required')">الرجاء ملء جميع البيانات</p>
+
+
+            </div> -->
+
+
+          </div>
+            <div>
+             <label for="TimeIn">الوقت</label>
+            <input formControlName="timeIn" type="time" class="form-control" id="TimeIn"  [placeholder]="item.timeIn">
+
+            <!-- <div *ngIf="GuestFormUpDate.get('tm')?.errors && GuestFormUpDate.get('TimeIn')?.touched" class="alert alert-danger p-1 small w-50 mx-auto">
+
+              <p class="mb-0" *ngIf="GuestFormUpDate.get('tm')?.getError('required')">الرجاء ملء جميع البيانات</p>
+
+
+            </div> -->
+
+          </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="UserId" class="form-label">رقم المستخدم</label>
+            <input  formControlName="userId" type="text" class="form-control" id="UserId" >
+
+            <!-- <div *ngIf="GuestFormUpDate.get('userId')?.errors && GuestFormUpDate.get('userId')?.touched" class="alert alert-danger p-1 small w-50 mx-auto">
+
+              <p class="mb-0" *ngIf="GuestFormUpDate.get('userId')?.getError('required')">Id is Required</p>
+
+
+            </div> -->
+
+          </div>
+
+          <div class="mb-3">
+            <!-- <label for="id" class="col-form-label">رقم الجهة</label> -->
+            <input hidden [value]="GuestID"  formControlName="Id" type="text" class="form-control" id="Id" [placeholder]="GuestID">
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">اغلاق</button>
+            <button [disabled]="GuestFormUpDate.invalid"  class="btn btn-primary" data-bs-dismiss="modal" (click)="this.patchName()">تعديل</button>
+          </div>
+
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<!-- // ******************************************Ditals -->
+
+<div class="modal fade" [id]="'ViewModal-' + item.Id"  tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel"></h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+
+          <div class="mb-3">
+
+            <label for="nameGuest" class="form-label">إسم الزئر</label>
+            <input  type="text" class="form-control mb-3" id="nameGuest" [placeholder]="item.GuestName" readonly>
+
+          </div>
+
+          <div class="mb-3">
+
+            <label for="nameAgency">الجهة التابع لها</label>
+            <select   class="form-select mb-3" aria-label="Default select example">
+              <option [id]="item.agencyId" >{{item.AgencyName}}</option>
+              </select>
+
+          </div>
+
+
+          <div class="mb-3">
+
+            <label for="nameAdjective">الصفة الوظيفية</label>
+            <select  [id]="item.adjectiveId" class="form-select" aria-label="Default select example">
+                <option >{{item.Adjective}}</option>
+
+              </select>
+
+          </div>
+
+          <div class="mb-3">
+
+            <label for="nameHost ">اسم المستضيف</label>
+            <select   class="form-select mb-3" aria-label="Default select example">
+              <option [id]="item.hostId">{{item.HostName}}</option>
+              </select>
+
+          </div>
+
+          <div class="mb-3">
+            <label for="Type" class="form-label">نوع الموعد</label>
+            <input  type="text" class="form-control mb-3" id="Type" [placeholder]="item.GuestType" readonly>
+          </div>
+
+          <div class="mb-3">
+            <label for="PIdNumber" class="form-label">رقم الهوية</label>
+            <input type="text" class="form-control" id="PIdNumber" [placeholder]="item.PidNumber" readonly>
+          </div>
+
+          <div class="d-flex justify-content-center align-items-center mb-3">
+            <div class="mx-3">
+             <label for="DateIn">التاريخ</label>
+            <input  type="date" class="form-control" id="DateIn" [min]="minDate" [value]="item.DateIn" readonly>
+            </div>
+            <div>
+             <label for="TimeIn">الوقت</label>
+            <input  type="time" class="form-control" id="TimeIn" [value]="item.TimeIn" readonly>
+            </div>
+          </div>
+
+
+
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">اغلاق</button>
+
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+      </tbody>
+
+    </table>
+
+  </div>
+
+
+
+
+
+
+
+
