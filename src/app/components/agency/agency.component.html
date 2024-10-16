@@ -9,15 +9,8 @@
    <div class="col-6">
 
     <div class="mb-3">
-      <label for="UserId" class="form-label">رقم المستخدم</label>
-      <input  formControlName="UserId" type="text" class="form-control" id="UserId" >
-<!--
-      <div *ngIf="AgencyFormAdd.get('UserId')?.errors && AgencyFormAdd.get('UserId')?.touched" class="alert alert-danger p-1 small w-50 mx-auto">
+      <input hidden formControlName="UserId" type="text" class="form-control" id="UserId" >
 
-        <p class="mb-0" *ngIf="AgencyFormAdd.get('UserId')?.getError('required')">الرجاء ملء جميع البيانات</p>
-
-
-      </div> -->
 
     </div>
 
@@ -25,11 +18,6 @@
       <label for="AgencyName" class="form-label">إسم الجهة</label>
       <input  formControlName="AgencyName" type="text" class="form-control" id="AgencyName" placeholder="إسم الجهة">
 
-      <!-- <div *ngIf="AgencyFormAdd.get('AgencyName')?.errors && AgencyFormAdd.get('AgencyName')?.touched" class="alert alert-danger p-1 small w-50 mx-auto">
-
-        <p class="mb-0" *ngIf="AgencyFormAdd.get('AgencyName')?.getError('required')">الرجاء ملء جميع البيانات</p>
-
-      </div> -->
 
     </div>
 
@@ -121,25 +109,13 @@
                     <label for="nameAgencyModel" class="col-form-label">اسم الجهة</label>
                     <input [value]="item.AgencyName"  formControlName="agencyName" type="text" class="form-control" AgencyName id="nameAgencyModel" [placeholder]="item.AgencyName">
 
-
-                  <!-- <div *ngIf="AgencyFormUpdata.get('agencyName')?.errors && AgencyFormUpdata.get('agencyName')?.touched" class="alert alert-danger p-1 small w-50 mx-auto">
-
-                    <p class="mb-0" *ngIf="AgencyFormUpdata.get('agencyName')?.getError('required')">الرجاء ملء جميع البيانات</p>
-
-                  </div> -->
-
                   </div>
 
                   <div class="mb-3">
-                    <label for="nameAgencyModel" class="col-form-label">اسم المستخدم</label>
-                    <input value="12"  formControlName="userId" type="text" class="form-control" id="nameAgencyModel" placeholder="10">
-
-                    <!-- <div *ngIf="AgencyFormUpdata.get('userId')?.errors && AgencyFormUpdata.get('userId')?.touched" class="alert alert-danger p-1 small w-50 mx-auto">
-
-                      <p class="mb-0" *ngIf="AgencyFormUpdata.get('userId')?.getError('required')">الرجاء ملء جميع البيانات</p>
+                  
+                    <input hidden formControlName="userId" type="text" class="form-control" id="nameAgencyModel">
 
 
-                    </div> -->
 
                   </div>
 

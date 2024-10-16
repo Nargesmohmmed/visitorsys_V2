@@ -1,27 +1,29 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { authGuard } from './shared/guards/auth.guard';
+import { authReceptionGuard } from './shared/guards/auth-reception.guard';
+import { authBoabaGuard } from './shared/guards/auth-boaba.guard';
 
 const routes: Routes = [
 
 
-
-  {path: '', canActivate :[authGuard],  loadComponent: () =>
+  //
+  {path: '', canActivate :[authGuard] ,loadComponent: () =>
     import('./Layout/nav-blank/nav-blank.component')
     .then((m) => m.NavBlankComponent)
   ,children: [
 
     {path : '' , redirectTo: 'home' , pathMatch: 'full'},
-    {path: 'home' , loadComponent: () => import('./components/home/home.component')
+    {path: 'home' ,  loadComponent: () => import('./components/home/home.component')
     .then((m) => m.HomeComponent) , title: 'Home'} ,
     {path: 'Bookappointments' , loadComponent: () => import('./components/bookappointments/bookappointments.component')
       .then((m) => m.BookappointmentsComponent) , title: 'Bookappointments'} ,
       {path: 'print' , loadComponent: () => import('./components/print/print.component')
         .then((m) => m.PrintComponent) , title: 'Print'} ,
-      {path: 'visitorsys' , loadComponent: () => import('./components/visitorsys/visitorsys.component')
-        .then((m) => m.VisitorsysComponent) , title: 'Visitorsys'} ,
-      {path: 'reception' , loadComponent: () => import('./components/reception/reception.component')
-        .then((m) => m.ReceptionComponent) , title: 'Reception'} ,
+      // {path: 'visitorsys' ,   loadComponent: () => import('./components/visitorsys/visitorsys.component')
+      //   .then((m) => m.VisitorsysComponent) , title: 'Visitorsys'} ,
+      // {path: 'reception' , loadComponent: () => import('./components/reception/reception.component')
+      //   .then((m) => m.ReceptionComponent) , title: 'Reception'} ,
 
       {path: 'seting' , loadComponent: () => import('./components/navbar-seting/navbar-seting.component')
         .then((m) => m.NavbarSetingComponent) , title: 'Seting'} ,
@@ -31,7 +33,19 @@ const routes: Routes = [
 
   } ,
 
+
+  // ************************************************************* Parmtion
+  {path: 'reception' , canActivate :[authReceptionGuard] , loadComponent: () => import('./components/reception/reception.component')
+    .then((m) => m.ReceptionComponent) , title: 'Reception'} ,
+
+
+// ************************************************************************ Babab
+
+{path: 'visitorsys' ,  canActivate :[authBoabaGuard] , loadComponent: () => import('./components/visitorsys/visitorsys.component')
+  .then((m) => m.VisitorsysComponent) , title: 'Visitorsys'} ,
+
 // **************************************************** NAV Bookappointments
+
 
 
 {path: '', canActivate :[authGuard],  loadComponent: () =>
@@ -39,12 +53,14 @@ const routes: Routes = [
   .then((m) => m.NavBookappointmentsComponent)
 ,children: [
 
+
+  {path: 'guest' , loadComponent: () => import('./components/guest/guest.component')
+    .then((m) => m.GuestComponent) , title: 'Guest'} ,
+
   {path : '' , redirectTo: 'agency' , pathMatch: 'full'},
   {path: 'agency' , loadComponent: () => import('./components/agency/agency.component')
     .then((m) => m.AgencyComponent) , title: 'Agency'} ,
 
-    {path: 'guest' , loadComponent: () => import('./components/guest/guest.component')
-      .then((m) => m.GuestComponent) , title: 'Guest'} ,
 
       {path: 'adjective' , loadComponent: () => import('./components/adjective/adjective.component')
         .then((m) => m.AdjectiveComponent) , title: 'Adjective'} ,
@@ -86,7 +102,7 @@ const routes: Routes = [
   {path : '', loadComponent: () => import('./Layout/nav-login/nav-login.component')
     .then((m) => m.NavLoginComponent) ,
     children: [
-      {path: '' , redirectTo: 'login' , pathMatch: 'full'},
+       {path: '' , redirectTo: 'login' , pathMatch: 'full'},
 
       {path : 'login', loadComponent: () => import('./components/login/login.component')
 

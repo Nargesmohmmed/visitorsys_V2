@@ -121,7 +121,7 @@ patchName() {
 
   getAllGuestByData() :void {
 
-    this._GuestService.GetAllGuest().subscribe({
+    this._GuestService.GetAllGuestByData().subscribe({
 
       next: (response) => {
 

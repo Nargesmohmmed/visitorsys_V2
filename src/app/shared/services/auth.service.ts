@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { jwtDecode } from 'jwt-decode';
 import { Observable } from 'rxjs';
 import { environments } from '../../../environments/environment';
+// import { environments } from '../../../environments/environment.prod';
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +12,7 @@ export class AuthService {
 
   constructor(private _HttpClient:HttpClient) { }
   // baseUrl:string = `http://localhost:5000/api/Login`;
+  // baseUrl:string = `${environments.apiUrl}Login`;
   baseUrl:string = `${environments.apiUrl}Login`;
 
   userInfo:any;

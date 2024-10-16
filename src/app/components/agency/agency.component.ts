@@ -33,7 +33,8 @@ export class AgencyComponent implements OnInit {
   update:any= {};
   term:string = "";
 
-  AgencyID:any="";
+  AgencyID:any= "";
+  UserId:any = localStorage.getItem('UserId');
 
   // ******************************
 
@@ -45,7 +46,7 @@ export class AgencyComponent implements OnInit {
 
   AgencyFormAdd: FormGroup = this._FormBuilder.group({
 
-    UserId : ['' , [Validators.required]],
+    UserId : [this.UserId],
     AgencyName: ['' , [Validators.required]] ,
 
 
@@ -65,13 +66,14 @@ export class AgencyComponent implements OnInit {
     AgencyFormUpdata: FormGroup = this._FormBuilder.group({
 
       agencyName: ['' , [Validators.required]] ,
-      userId: ['10'] ,
+      userId: [this.UserId] ,
       id :[this.AgencyID]
 
     } );
 
     patchName() {
      this.AgencyFormUpdata.get("id")?.setValue(this.AgencyID);
+     this.AgencyFormUpdata.get("userId")?.setValue(this.UserId);
 
     }
 
@@ -183,9 +185,9 @@ export class AgencyComponent implements OnInit {
   cler(): void {
 
     this.AgencyFormAdd.get("AgencyName")?.setValue("");
-    this.AgencyFormAdd.get("UserId")?.setValue("");
+    // this.AgencyFormAdd.get("UserId")?.setValue("");
     this.AgencyFormUpdata.get("agencyName")?.setValue("");
-    this.AgencyFormUpdata.get("userId")?.setValue("");
+    // this.AgencyFormUpdata.get("userId")?.setValue("");
 
 
 

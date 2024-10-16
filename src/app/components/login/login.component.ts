@@ -19,7 +19,10 @@ export class LoginComponent {
 
   errMsg:string = '';
   isLoading:boolean = false;
-  Token:any;
+  UserId:any;
+  Role:any;
+
+
 
 
   loginForm : FormGroup = this._FormBuilder.group({
@@ -43,10 +46,35 @@ export class LoginComponent {
       next: (response) => {
 
         console.log(response);
-             localStorage.setItem('etoken' , response.tokenValue);
+             localStorage.setItem('etoken' , response.TokenValue);
+             this.UserId = response.UserId
+             this.Role = response.Role;
+              this.UserId = localStorage.setItem('UserId', this.UserId);
+              this.Role = localStorage.setItem('Role', this.Role);
+              this.Role = localStorage.getItem('Role');
             this._AuthService.decodeUser();
-               this._Router.navigate(['/home']);
+
+            // this._Router.navigate(['/guest']);
+              //  this._Router.navigate(['/reception']);
+              if(this.Role=='SuperUser'){
+
+                this._Router.navigate(['/home'])
+                // this._Router.navigate(['/home'])
+
+              }else if (this.Role=='Reception') {
+
+                this._Router.navigate(['/reception'])
+
+              }else if (this.Role=='Boaba') {
+
+                this._Router.navigate(['/visitorsys'])
+
+              }
             this.isLoading = false;
+
+
+
+
 
       },
 

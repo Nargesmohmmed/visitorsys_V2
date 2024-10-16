@@ -26,6 +26,7 @@ export class AdjectiveComponent implements OnInit {
   term:string = "";
 
   AdjectiveID:any="";
+  UserId:any = localStorage.getItem('UserId');
 
   // ******************************
 
@@ -34,7 +35,7 @@ export class AdjectiveComponent implements OnInit {
 
     AdjectiveFormAdd: FormGroup = this._FormBuilder.group({
 
-      UserId : ['' ,[Validators.required]],
+      UserId : [this.UserId],
       Adjective: ['' , [Validators.required]] ,
 
     })
@@ -49,13 +50,14 @@ export class AdjectiveComponent implements OnInit {
 
         AdjectiveFormUpdata: FormGroup = this._FormBuilder.group({
 
-          UserId : ['10' ],
+          UserId : [this.UserId ],
           Adjective: [this.AdjectiveID , [Validators.required]] ,
           id :[this.AdjectiveID]
 
         });
 
         patchName() {
+          this.AdjectiveFormUpdata.get("UserId")?.setValue(this.UserId);
           this.AdjectiveFormUpdata.get("id")?.setValue(this.AdjectiveID);
 
          }
@@ -84,6 +86,7 @@ export class AdjectiveComponent implements OnInit {
       error: (err) => {
 
         console.log(err);
+        this._ToastrService.error("لم يتم التنفيذ!!");
 
       }
 
@@ -113,8 +116,9 @@ export class AdjectiveComponent implements OnInit {
 
       }, error: (err) => {
 
-        alert(err);
+        // alert(err);
         console.log(err);
+        this._ToastrService.error("لم يتم التنفيذ!!");
 
       }
 
@@ -142,7 +146,7 @@ export class AdjectiveComponent implements OnInit {
       },error: (err) => {
 
         console.log(err);
-        this._ToastrService.error("Error");
+        this._ToastrService.error("لم يتم التنفيذ!!");
 
       }
 

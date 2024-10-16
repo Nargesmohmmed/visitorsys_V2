@@ -62,6 +62,8 @@ export class GuestComponent implements OnInit  {
 
     GuestID:any="";
 
+    UserId:any = localStorage.getItem('UserId');
+
     // ******************************
 
 
@@ -73,7 +75,7 @@ export class GuestComponent implements OnInit  {
       adjectiveId: ['' , [Validators.required]],
       hostId: ['' , [Validators.required]],
       agencyId: ['' , [Validators.required]],
-      userId: ['' , [Validators.required]],
+      userId: [this.UserId],
       pidNumber: ['' , [Validators.required]],
       guestType: ['' , [Validators.required]],
       dateIn: ['' , [Validators.required]],
@@ -152,7 +154,7 @@ export class GuestComponent implements OnInit  {
       adjectiveId: ['' , [Validators.required]],
       hostId: ['' , [Validators.required]],
       agencyId: ['' , [Validators.required]],
-      userId: ['' , [Validators.required]],
+      userId: [this.UserId],
       pidNumber: ['' , [Validators.required]],
       guestType: ['' , [Validators.required]],
       dateIn: ['' , [Validators.required]],
@@ -165,6 +167,7 @@ export class GuestComponent implements OnInit  {
 
   patchName() {
     this.GuestFormUpDate.get("Id")?.setValue(this.GuestID);
+    this.GuestFormUpDate.get("userId")?.setValue(this.UserId);
 
    }
 
@@ -361,7 +364,7 @@ handleFormAdd():void {
 
     }, error: (err) => {
 
-      this._ToastrService.error("Error");
+      this._ToastrService.error("لم يتم التنفيذ!!");
       console.log(err);
       this.cler();
 
@@ -393,7 +396,7 @@ handleFormUpdate():void {
     },error: (err) => {
 
       console.log(err);
-      this._ToastrService.error("لم يتم التنفيذ");
+      this._ToastrService.error("لم يتم التنفيذ!!");
       this.cler();
 
     }
@@ -420,7 +423,7 @@ handleFormUpdate():void {
       error: (err) => {
 
         console.log(err);
-        this._ToastrService.error("Error");
+        this._ToastrService.error("لم يتم التنفيذ!!");
 
 
       }
@@ -446,7 +449,7 @@ handleFormUpdate():void {
       error: (err) => {
 
         console.log(err);
-        this._ToastrService.error("Error");
+        this._ToastrService.error("لم يتم التنفيذ!!");
 
 
       }
@@ -469,7 +472,7 @@ handleFormUpdate():void {
       error: (err) => {
 
         console.log(err);
-        this._ToastrService.error("Error");
+        this._ToastrService.error("لم يتم التنفيذ!!");
 
 
       }
@@ -494,7 +497,7 @@ handleFormUpdate():void {
       error: (err) => {
 
         console.log(err);
-        this._ToastrService.error("Error");
+        this._ToastrService.error("لم يتم التنفيذ!!");
 
 
       }

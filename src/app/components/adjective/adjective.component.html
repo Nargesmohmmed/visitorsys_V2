@@ -8,15 +8,8 @@
    <div class="col-6">
 
     <div class="mb-3">
-      <label for="UserId" class="form-label">رقم المستخدم</label>
-      <input formControlName="UserId" type="text" class="form-control" id="UserId" placeholder="الصفة الوظيفية">
+      <input hidden formControlName="UserId" type="text" class="form-control" id="UserId" >
 
-      <!-- <div *ngIf="AdjectiveFormAdd.get('UserId')?.errors && AdjectiveFormAdd.get('UserId')?.touched" class="alert alert-danger p-1 small w-50 mx-auto">
-
-        <p class="mb-0" *ngIf="AdjectiveFormAdd.get('UserId')?.getError('required')">الرجاء ملء جميع البيانات</p>
-
-
-      </div> -->
 
     </div>
 
@@ -120,16 +113,10 @@
           <form [formGroup]="AdjectiveFormUpdata" (submit)="handleFormUpdate()">
 
             <div class="mb-3">
-              <label for="UserId" class="form-label">رقم المستخدم</label>
-              <input value="12"  formControlName="UserId" type="text" class="form-control" id="UserId" placeholder="12">
 
-<!--
-              <div *ngIf="AdjectiveFormUpdata.get('UserId')?.errors && AdjectiveFormUpdata.get('UserId')?.touched" class="alert alert-danger p-1 small w-50 mx-auto">
-
-                <p class="mb-0" *ngIf="AdjectiveFormUpdata.get('UserId')?.getError('required')">الرجاء ملء جميع البيانات</p>
+              <input hidden formControlName="UserId" type="text" class="form-control" id="UserId" >
 
 
-              </div> -->
 
             </div>
 
@@ -137,13 +124,7 @@
               <label for="nameAdjectiveModel" class="form-label">الصفة الوظيفية</label>
               <input formControlName="Adjective" type="text" class="form-control" id="nameAdjectiveModel" [placeholder]="item.Adjective">
 
-<!-- 
-              <div *ngIf="AdjectiveFormUpdata.get('Adjective')?.errors && AdjectiveFormUpdata.get('Adjective')?.touched" class="alert alert-danger p-1 small w-50 mx-auto">
 
-                <p class="mb-0" *ngIf="AdjectiveFormUpdata.get('Adjective')?.getError('required')">الرجاء ملء جميع البيانات</p>
-
-
-              </div> -->
 
             </div>
 

@@ -12,11 +12,7 @@
       <label for="HostName" class="form-label">إسم المستضيف</label>
       <input formControlName="HostName" type="text" class="form-control mb-3" id="HostName" placeholder="إسم المستضيف">
 
-      <!-- <div *ngIf="HostFormAdd.get('HostName')?.errors && HostFormAdd.get('HostName')?.touched" class="alert alert-danger p-1 small w-50 mx-auto">
 
-        <p class="mb-0" *ngIf="HostFormAdd.get('HostName')?.getError('required')">الرجاء ملء جميع البيانات</p>
-
-      </div> -->
 
     </div>
 
@@ -27,11 +23,7 @@
         <option value="3">عامل تكييف</option> -->
       </select>
 
-      <!-- <div *ngIf="HostFormAdd.get('AdjectiveId')?.errors && HostFormAdd.get('AdjectiveId')?.touched" class="alert alert-danger p-1 small w-50 mx-auto">
 
-        <p class="mb-0" *ngIf="HostFormAdd.get('AdjectiveId')?.getError('required')">الرجاء ملء جميع البيانات</p>
-
-      </div> -->
 
    </div>
 
@@ -43,11 +35,6 @@
       <input formControlName = "HostEmail" type="email" class="form-control" id="HostEmail">
 
 
-      <!-- <div *ngIf="HostFormAdd.get('HostEmail')?.errors && HostFormAdd.get('HostEmail')?.touched" class="alert alert-danger p-1 small w-50 mx-auto">
-
-        <p class="mb-0" *ngIf="HostFormAdd.get('HostEmail')?.getError('required')">الرجاء ملء جميع البيانات</p>
-
-      </div> -->
 
     </div>
 
@@ -55,25 +42,13 @@
       <label for="HostPhone">رقم الهاتف</label>
       <input formControlName = "HostTelephone" type="tel" class="form-control" id="HostPhone">
 
-      <!-- <div *ngIf="HostFormAdd.get('HostTelephone')?.errors && HostFormAdd.get('HostTelephone')?.touched" class="alert alert-danger p-1 small w-50 mx-auto">
-
-        <p class="mb-0" *ngIf="HostFormAdd.get('HostTelephone')?.getError('required')">الرجاء ملء جميع البيانات</p>
-
-      </div> -->
 
     </div>
 
 
     <div class="mb-3">
-      <label for="UserId" class="form-label">رقم المستخدم</label>
-      <input  formControlName="UserID" type="text" class="form-control" id="UserId" >
+      <input hidden  formControlName="UserID" type="text" class="form-control" id="UserId" >
 
-      <!-- <div *ngIf="HostFormAdd.get('UserID')?.errors && HostFormAdd.get('UserID')?.touched" class="alert alert-danger p-1 small w-50 mx-auto">
-
-        <p class="mb-0" *ngIf="HostFormAdd.get('UserID')?.getError('required')">الرجاء ملء جميع البيانات</p>
-
-
-      </div> -->
 
     </div>
 
@@ -223,21 +198,16 @@
             </div>
 
             <div class="mb-3">
-              <label for="UserId" class="form-label">رقم المستخدم</label>
-              <input  formControlName="UserID" type="text" class="form-control" id="UserId" >
 
-              <!-- <div *ngIf="HostFormUpdata.get('UserID')?.errors && HostFormUpdata.get('UserID')?.touched" class="alert alert-danger p-1 small w-50 mx-auto">
-
-                <p class="mb-0" *ngIf="HostFormUpdata.get('UserID')?.getError('required')">الرجاء ملء جميع البيانات</p>
+              <input hidden  formControlName="UserID" type="text" class="form-control" id="UserId" >
 
 
-              </div> -->
 
             </div>
 
             <div class="mb-3">
-              <label for="id" class="col-form-label">رقم المستضيف</label>
-              <input  [value]="HostId"  formControlName="Id" type="text" class="form-control" id="Id" [placeholder]="HostId">
+
+              <input hidden [value]="HostId"  formControlName="Id" type="text" class="form-control" id="Id" [placeholder]="HostId">
             </div>
 
 
@@ -273,11 +243,6 @@
 
           </div>
 
-          <!-- <label for="nameAdjective">الصفة الوظيفية</label>
-          <select   [id]="item.AdjectiveId" class="form-select" aria-label="Default select example">
-              <option >{{item.Adjective}}</option>
-            </select> -->
-
             <div class="mb-3">
 
               <label for="nameAdjective">الصفة الوظيفية</label>
@@ -291,7 +256,7 @@
             <div class="mb-3">
 
               <label for="emailModel">البريد الالكتروني</label>
-              <input  type="email" class="form-control" id="emailModel" [placeholder]="item.HostEmail">
+              <input  type="email" class="form-control" id="emailModel" [placeholder]="item.HostEmail" readonly>
 
 
             </div>

@@ -36,6 +36,8 @@ export class HostComponent  implements OnInit {
 
   HostId:any="";
 
+  UserId:any = localStorage.getItem('UserId');
+
   // ******************************
 
    // ************************************** formAdd
@@ -46,7 +48,7 @@ export class HostComponent  implements OnInit {
     HostName : ['' , [Validators.required]],
     AdjectiveId: ['' , [Validators.required]] ,
     HostEmail : ['' , [Validators.required]],
-    UserID: ['10' , [Validators.required]] ,
+    UserID: [this.UserId] ,
     HostTelephone : ['' , [Validators.required ]] ,
 
 
@@ -68,13 +70,14 @@ export class HostComponent  implements OnInit {
     HostName : ['' , [Validators.required]],
     AdjectiveId: ['' , [Validators.required]] ,
     HostEmail : ['' , [Validators.required]],
-    UserID: ['10'] ,
+    UserID: [this.UserId] ,
     HostTelephone : ['' , [Validators.required ]] ,
 
     })
 
     patchName() {
       this.HostFormUpdata.get("Id")?.setValue(this.HostId);
+      this.HostFormUpdata.get("UserID")?.setValue(this.UserId);
 
      }
 
@@ -105,7 +108,7 @@ ngOnInit(): void {
       error: (err) => {
 
         console.log(err);
-        this._ToastrService.error("Error");
+        this._ToastrService.error("لم يتم التنفيذ!!");
 
 
       }
@@ -129,7 +132,7 @@ ngOnInit(): void {
       error: (err) => {
 
         console.log(err);
-        this._ToastrService.error("Error");
+        this._ToastrService.error("لم يتم التنفيذ!!");
 
 
       }
@@ -163,7 +166,7 @@ ngOnInit(): void {
 
            alert(err);
            console.log(err);
-           this._ToastrService.error("Error");
+           this._ToastrService.error("لم يتم التنفيذ!!");
 
          }
 

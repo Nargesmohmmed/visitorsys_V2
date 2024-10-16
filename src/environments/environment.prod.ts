@@ -1,6 +1,7 @@
 export const environments = {
 
-  production: false ,
-  apiUrl : `http://localhost:5000/api/`
+  // production: false ,
+  production: true,
+  apiUrl : `http://192.168.4.32:3030/api/`
 
 }

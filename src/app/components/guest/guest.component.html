@@ -128,8 +128,8 @@
 
 
   <div class="mb-3">
-    <label for="UserId" class="form-label">رقم المستخدم</label>
-    <input  formControlName="userId" type="text" class="form-control" id="UserId" >
+
+    <input hidden  formControlName="userId" type="text" class="form-control" id="UserId" >
 
     <!-- <div *ngIf="GuestFormAdd.get('userId')?.errors && GuestFormAdd.get('userId')?.touched" class="alert alert-danger p-1 small w-50 mx-auto">
 
@@ -192,7 +192,8 @@
           <th scope="col">عرض</th>
         </tr>
       </thead>
-      <tbody *ngFor="let item of Guest  | searchGuest:term ;  let i=index">
+      <!--  | searchGuest:term -->
+      <tbody *ngFor="let item of Guest | searchGuest:term  ;  let i=index">
 
         <tr>
           <th>{{i + 1}}</th>
@@ -339,8 +340,8 @@
           </div>
 
           <div class="mb-3">
-            <label for="UserId" class="form-label">رقم المستخدم</label>
-            <input  formControlName="userId" type="text" class="form-control" id="UserId" >
+
+            <input  hidden formControlName="userId" type="text" class="form-control" id="UserId" >
 
             <!-- <div *ngIf="GuestFormUpDate.get('userId')?.errors && GuestFormUpDate.get('userId')?.touched" class="alert alert-danger p-1 small w-50 mx-auto">
 

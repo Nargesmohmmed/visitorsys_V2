@@ -46,7 +46,7 @@ export class VisitorsysComponent {
       error: (err) => {
 
         console.log(err);
-        this._ToastrService.error("Error");
+        this._ToastrService.error("لم يتم التنفيذ!!");
 
 
       }

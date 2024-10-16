@@ -16,6 +16,8 @@ export class NavbarBlankComponent {
   signOut():void {
 
     localStorage.removeItem('etoken');
+    localStorage.removeItem('UserId');
+    localStorage.removeItem('Role');
     this._Router.navigate(['/login']);
 
   }
